@@ -1,0 +1,11 @@
+fruit = ('apple', 'banana', 'orange')
+drinks = ('water', 'orange juice', 'juice')
+foods = ('pizza', 'pasta', 'hamburger')
+fdf = fruit + drinks + foods
+list_fdf = list(fdf)
+list_fdf.append('peach')
+list_fdf.append('Mojito')
+list_fdf.append('barbecue')
+fdf = tuple(list_fdf)
+favorite_list = list(fdf[-3:])
+print(favorite_list)
