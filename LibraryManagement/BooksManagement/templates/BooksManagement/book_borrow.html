@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Borrow a book{% endblock %}
+{% block content %}
+    <h2>borrow Book</h2>
+    <h3>Enter the desired date</h3>
+    <form method="post" novalidate="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">borrow</button>
+        <a href="{% url 'book:book_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

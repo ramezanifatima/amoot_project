@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}home of library management{% endblock %}
+{% block content %}
+    <div class="container mt-4">
+        {% for book in books %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <h4>{{ book.title }}</h4>
+                        <p><strong>Author:</strong> {{ book.author }}</p>
+                        <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+                        <p><strong>Summary:</strong> {{ book.summary }}</p>
+                        <p><strong>Categories:</strong>
+                    </div>
+                    <div class="col-4">
+                        {% for cat in book.category.all %}
+                            <p>{{ cat.name }}</p>
+                        {% endfor %}
+
+                    </div>
+                    <div class="col-4">
+                        <a href="{% url 'book:book_update' book.id %}" class="btn btn-warning">Edit</a>
+                        <a type="submit" href="{% url 'book:book_delete' book.id %}" class="btn btn-danger">Delete</a>
+                        {% if book.is_available %}
+                            <a href="{% url 'book:borrow_book' book.id %}#" class="btn btn-primary">Borrow</a>
+                        {% else %}
+                            <a href="" class="btn btn-secondary">not available</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+
+    </div>
+{% endblock %}

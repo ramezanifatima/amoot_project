@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}return the book{% endblock %}
+
+{% block content %}
+<h2>Would you like to return the book? "{{ book.title }}"?</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, back</button>
+    <a href="{% url 'book:book_list'  %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

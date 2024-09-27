@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}List of borrowed books{% endblock %}
+{% block content %}
+    <div class="container mt-4">
+        {% if borrowed_book %}
+        	{% for book in borrowed_book %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <h4>{{ book.book.title }}</h4>
+                        <p><strong>Author:</strong> {{ book.book.author }}</p>
+                        <p><strong>ISBN:</strong> {{ book.book.isbn }}</p>
+                        <p><strong>Summary:</strong> {{ book.book.summary }}</p>
+                        <p><strong>Categories:</strong>
+                    </div>
+                    <div class="col-4">
+                        {% for cat in book.book.category.all %}
+                            <p>{{ cat.name }}</p>
+                        {% endfor %}
+
+                    </div>
+                    <div class="col-4">
+                        {% if book.status %}
+                            <a href="{% url 'book:back_borrow' book.id %}#" class="btn btn-primary">back</a>
+                        {% else %}
+                            <a href="" class="btn btn-secondary">not available</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+            {% else %}
+            <h3>There is no book</h3>
+        {% endif %}
+
+    </div>
+{% endblock %}
